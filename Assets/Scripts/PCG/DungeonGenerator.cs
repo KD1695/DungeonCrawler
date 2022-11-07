@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.InputSystem;
@@ -9,13 +10,12 @@ namespace PCG
 {
     public class DungeonGenerator : MonoBehaviour
     {
-        [SerializeField] private List<DungeonRoom> dungeonNodeRoomTypes;
+        [SerializeField] private List<DungeonRoom> dungeonNodeSingleOutRoomTypes;
+        [SerializeField] private List<DungeonRoom> dungeonNodeMultipleOutRoomTypes;
         [SerializeField] private List<DungeonRoom> dungeonEndRoomTypes;
         [SerializeField] private DungeonRoom startRoom;
-        [SerializeField] private InputActionReference generateDungeonAction;
 
         private int generatedRooms = 0;
-        //private bool isDungeonGenerated = false;
 
         void Start()
         {
@@ -26,26 +26,36 @@ namespace PCG
         {
             if (generatedRooms < 4)
             {
-                foreach (var gateOut in room.gatesOut)
+                if (room.gatesOut.Count > 1)
                 {
-                    var position = gateOut.transform.position;
-                    var newRoom = GameObject.Instantiate<DungeonRoom>(dungeonNodeRoomTypes[Random.Range(0, dungeonNodeRoomTypes.Count)],
-                        new Vector3(position.x, 0, position.z), Quaternion.Euler(0,gateOut.rotation.eulerAngles.y, 0));
-                    generatedRooms++;
-                    GenerateDungeon(newRoom);
+                    foreach (var gateOut in room.gatesOut)
+                    {
+                        GenerateDungeon(CreateDungeonRoom(dungeonNodeSingleOutRoomTypes, gateOut));
+                    }
+                }
+                else if(room.gatesOut.Count == 1)
+                {
+                    GenerateDungeon(CreateDungeonRoom(dungeonNodeMultipleOutRoomTypes, room.gatesOut.First()));
                 }
             }
             else
             {
                 foreach (var gateOut in room.gatesOut)
                 {
-                    var position = gateOut.transform.position;
-                    var newRoom = GameObject.Instantiate<DungeonRoom>(dungeonEndRoomTypes[Random.Range(0, dungeonEndRoomTypes.Count)],
-                        new Vector3(position.x, 0, position.z), Quaternion.Euler(0,gateOut.rotation.eulerAngles.y, 0));
-                    generatedRooms++;
+                    CreateDungeonRoom(dungeonEndRoomTypes, gateOut);
                 }
             }
             return;
+        }
+
+        DungeonRoom CreateDungeonRoom(List<DungeonRoom> sourceList, Transform gateOut)
+        {
+            var position = gateOut.transform.position;
+            var newRoom = GameObject.Instantiate<DungeonRoom>(sourceList[Random.Range(0, sourceList.Count)],
+                new Vector3(position.x, 0, position.z), Quaternion.Euler(0,gateOut.rotation.eulerAngles.y, 0));
+            generatedRooms++;
+
+            return newRoom;
         }
     }
 }

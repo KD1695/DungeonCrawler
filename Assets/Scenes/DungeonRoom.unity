@@ -532,17 +532,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f0529916a8cd245b8e2fa1201775de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonNodeRoomTypes:
+  dungeonNodeSingleOutRoomTypes:
   - {fileID: 3904079355073120103, guid: dfd48b4520c5ed345969c2835a3322f8, type: 3}
   - {fileID: 808013017660868496, guid: 19ab055636d7df94c955884b20a10c33, type: 3}
+  dungeonNodeMultipleOutRoomTypes:
   - {fileID: 7607744360071335569, guid: 74b66ea467b3c704ca2a88500db70038, type: 3}
   - {fileID: 4599294288093450492, guid: 3e11387d9dd24874b84afb771f93cd6e, type: 3}
   dungeonEndRoomTypes:
   - {fileID: 7871314528768959791, guid: abd9db71872756a418aab5edf62f28e9, type: 3}
   - {fileID: 8708112924335727541, guid: 75aece9fe3b899a4dae2f33e55adf9cc, type: 3}
   startRoom: {fileID: 783072745}
-  generateDungeonAction: {fileID: -7702948303680744528, guid: 4419d82f33d36e848b3ed5af4c8da37e,
-    type: 3}
 --- !u!1001 &6969015343261934736
 PrefabInstance:
   m_ObjectHideFlags: 0
