@@ -16,15 +16,17 @@ namespace PCG
         [SerializeField] private DungeonRoom startRoom;
 
         private int generatedRooms = 0;
+        private int roomLimit = 4;
 
         void Start()
         {
+            roomLimit = Random.Range(3, 6);
             GenerateDungeon(startRoom);
         }
 
         void GenerateDungeon(DungeonRoom room)
         {
-            if (generatedRooms < 4)
+            if (generatedRooms < roomLimit)
             {
                 if (room.gatesOut.Count > 1)
                 {
