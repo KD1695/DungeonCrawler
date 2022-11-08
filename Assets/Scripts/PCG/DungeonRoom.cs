@@ -8,7 +8,8 @@ namespace PCG
     {
         [SerializeField] public Transform gateIn;
         [SerializeField] public List<Transform> gatesOut;
-    
+        [SerializeField] public List<Transform> itemSpawnPoints;
+
         void Start()
         {
         

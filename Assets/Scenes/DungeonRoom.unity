@@ -542,6 +542,13 @@ MonoBehaviour:
   - {fileID: 7871314528768959791, guid: abd9db71872756a418aab5edf62f28e9, type: 3}
   - {fileID: 8708112924335727541, guid: 75aece9fe3b899a4dae2f33e55adf9cc, type: 3}
   startRoom: {fileID: 783072745}
+  roomItems:
+  - {fileID: 4692724623747871498, guid: e0ff17931e0cd604f9658b2ae15aea66, type: 3}
+  - {fileID: 9013014873337006512, guid: e9d1fe4365b88924fb5b97ea37edfb6b, type: 3}
+  - {fileID: 8060137026819741764, guid: 6727fc23ce9109444b62e6392293a7a5, type: 3}
+  - {fileID: 2892411712762447531, guid: 213d2b56253be4d4cbfb202ddb822757, type: 3}
+  - {fileID: 4114360615481746648, guid: 71715a5082fc03548a75f67b89faf87b, type: 3}
+  - {fileID: 8045810702686802794, guid: 6466f21c32f0b664d8f3c4d04a087c49, type: 3}
 --- !u!1001 &6969015343261934736
 PrefabInstance:
   m_ObjectHideFlags: 0

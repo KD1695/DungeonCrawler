@@ -10,10 +10,14 @@ namespace PCG
 {
     public class DungeonGenerator : MonoBehaviour
     {
+        [Header("RoomTypes")]
         [SerializeField] private List<DungeonRoom> dungeonNodeSingleOutRoomTypes;
         [SerializeField] private List<DungeonRoom> dungeonNodeMultipleOutRoomTypes;
         [SerializeField] private List<DungeonRoom> dungeonEndRoomTypes;
         [SerializeField] private DungeonRoom startRoom;
+
+        [Header("Items")] 
+        [SerializeField] private List<GameObject> roomItems;
 
         private int generatedRooms = 0;
         private int roomLimit = 4;
@@ -56,6 +60,14 @@ namespace PCG
             var newRoom = GameObject.Instantiate<DungeonRoom>(sourceList[Random.Range(0, sourceList.Count)],
                 new Vector3(position.x, 0, position.z), Quaternion.Euler(0,gateOut.rotation.eulerAngles.y, 0));
             generatedRooms++;
+            if (newRoom.itemSpawnPoints.Count > 0)
+            {
+                //spawn room items
+                foreach (var itemTransform in newRoom.itemSpawnPoints)
+                {
+                    GameObject.Instantiate(roomItems[Random.Range(0, roomItems.Count)], itemTransform);
+                }
+            }
 
             return newRoom;
         }
