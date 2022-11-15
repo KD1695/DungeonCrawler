@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Random = UnityEngine.Random;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -58,6 +61,9 @@ namespace StarterAssets
 
         [Tooltip("What layers the character uses as ground")]
         public LayerMask GroundLayers;
+
+        [SerializeField]
+        private List<Collider> collidersInRange = new List<Collider>();
 
         [Header("Cinemachine")]
         [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -159,6 +165,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Interaction();
         }
 
         private void LateUpdate()
@@ -348,6 +355,26 @@ namespace StarterAssets
             }
         }
 
+        private void Interaction()
+        {
+            if (_input.interact)
+            {
+                //interact function call on all colliders in range
+                foreach (var item in collidersInRange)
+                {
+                    try
+                    {
+                        item.gameObject.GetComponent<Interact>().InteractAction();
+                    }
+                    catch (Exception e)
+                    {
+                        //not an interactable object
+                    }
+                }
+                _input.interact = false;
+            }
+        }
+
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
@@ -387,6 +414,16 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            collidersInRange.Add(other);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            collidersInRange.Remove(other);
         }
     }
 }

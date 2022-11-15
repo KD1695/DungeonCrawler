@@ -21,10 +21,21 @@ namespace PCG
 
         private int generatedRooms = 0;
         private int roomLimit = 4;
+        private DungeonGenerator instance;
 
-        void Start()
+        void Awake()
         {
-            roomLimit = Random.Range(3, 6);
+            DontDestroyOnLoad(this);
+            if (instance == null)
+                instance = this;
+            else
+                DestroyImmediate(this.gameObject);
+        }
+
+        public void InitiateDungeonGeneration(int _roomLimit)
+        {
+            roomLimit = _roomLimit;
+            generatedRooms = 0;
             GenerateDungeon(startRoom);
         }
 

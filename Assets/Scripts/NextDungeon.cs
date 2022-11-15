@@ -10,6 +10,7 @@ public class NextDungeon : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameManager.Instance.LevelUp();
             SceneManager.LoadSceneAsync(0);
         }
     }
