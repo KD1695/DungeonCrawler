@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 51e6d039ed6668e42baec2738428ab09
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gateCollider: {instanceID: 0}
+  - gateMesh: {instanceID: 0}
+  - lockMaterial: {fileID: 2100000, guid: e4606420920634248a6b660fd7eb0928, type: 2}
+  - unlockMaterial: {fileID: 2100000, guid: 8f8ed6146d8d53948a7a7f5a7d7a072b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

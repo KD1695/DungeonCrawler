@@ -720,6 +720,8 @@ GameObject:
   - component: {fileID: 7607744361220495831}
   - component: {fileID: 7607744361220495816}
   - component: {fileID: 7607744361220495817}
+  - component: {fileID: 2182050003308997607}
+  - component: {fileID: 3623821611750794056}
   m_Layer: 0
   m_Name: gateIn
   m_TagString: Untagged
@@ -800,12 +802,44 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7607744361220495819}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!54 &2182050003308997607
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607744361220495819}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &3623821611750794056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607744361220495819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e6d039ed6668e42baec2738428ab09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gateCollider: {fileID: 7607744361220495817}
+  gateMesh: {fileID: 7607744361220495816}
+  lockMaterial: {fileID: 2100000, guid: e4606420920634248a6b660fd7eb0928, type: 2}
+  unlockMaterial: {fileID: 2100000, guid: 8f8ed6146d8d53948a7a7f5a7d7a072b, type: 2}
 --- !u!1 &7607744361506318951
 GameObject:
   m_ObjectHideFlags: 0

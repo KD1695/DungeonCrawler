@@ -49,10 +49,16 @@ namespace PCG
                     {
                         GenerateDungeon(CreateDungeonRoom(dungeonNodeSingleOutRoomTypes, gateOut));
                     }
+
+                    foreach (var gateOut in room.gatesOut)
+                    {
+                        gateOut.gameObject.SetActive(false);
+                    }
                 }
                 else if(room.gatesOut.Count == 1)
                 {
                     GenerateDungeon(CreateDungeonRoom(dungeonNodeMultipleOutRoomTypes, room.gatesOut.First()));
+                    room.gatesOut.First().gameObject.SetActive(false);
                 }
             }
             else
@@ -60,6 +66,10 @@ namespace PCG
                 foreach (var gateOut in room.gatesOut)
                 {
                     CreateDungeonRoom(dungeonEndRoomTypes, gateOut);
+                }
+                foreach (var gateOut in room.gatesOut)
+                {
+                    gateOut.gameObject.SetActive(false);
                 }
             }
             return;

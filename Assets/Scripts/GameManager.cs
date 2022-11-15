@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
 
-    [SerializeField] private int souls = 0;
+    [SerializeField] private int souls = 10;
     [SerializeField] private int level = 1;
     [SerializeField] private DungeonGenerator dungeonGenerator;
 
@@ -33,18 +33,21 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         dungeonGenerator.InitiateDungeonGeneration(level+2);
-        SceneManager.activeSceneChanged += OnLevelWasLoaded;
+        SceneManager.activeSceneChanged += OnLevelChange;
     }
 
-    private void OnLevelWasLoaded(Scene scene1, Scene scene2)
+    private void OnLevelChange(Scene scene1, Scene scene2)
     {
         dungeonGenerator.InitiateDungeonGeneration(level+2);
     }
 
-    public void RemoveSouls(int soulsToRemove)
+    public bool RemoveSouls(int soulsToRemove)
     {
+        if(souls-soulsToRemove < 0)
+            return false;
         souls -= soulsToRemove;
         updatedSoulsCount(souls);
+        return true;
     }
 
     public void AddSouls(int soulsToAdd)
