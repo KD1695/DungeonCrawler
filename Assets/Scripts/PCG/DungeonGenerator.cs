@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.InputSystem;
@@ -41,6 +42,8 @@ namespace PCG
 
         void GenerateDungeon(DungeonRoom room)
         {
+            if(room.IsDestroyed())
+                return;
             if (generatedRooms < roomLimit)
             {
                 if (room.gatesOut.Count > 1)
